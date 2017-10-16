@@ -5,11 +5,13 @@ VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{8C08A800-D93B-4EBC-AED8-4DE4E41BD2A7}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{3AF858A9-CE87-4F5E-A643-A1678C212C23}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{3AF858A9-CE87-4F5E-A643-A1678C212C23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomationSharp.Core", "Core\Automation.Core\AutomationSharp.Core.csproj", "{B9D28711-C9CF-4CF5-8432-79AFB4848913}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomationSharp.Core", "src\Core\Automation.Core\AutomationSharp.Core.csproj", "{B9D28711-C9CF-4CF5-8432-79AFB4848913}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomationSharp.NetConsole", "Clients\Automation.NetConsole\AutomationSharp.NetConsole.csproj", "{1EAA129F-96C5-474B-98A4-011AF9CAAE3A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{CA7613CA-79EF-4790-9895-021F67DD349A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomationSharp.NetConsole", "src\Samples\Automation.NetConsole\AutomationSharp.NetConsole.csproj", "{1EAA129F-96C5-474B-98A4-011AF9CAAE3A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
