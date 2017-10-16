@@ -1,11 +1,10 @@
-﻿using Automation.Core;
-using Automation.Services.Interfaces;
+﻿using AutomationSharp.Core;
 using OpenQA.Selenium;
 
-namespace Automation.Services.Services
+namespace AutomationSharp.Services
 {
 
-    public class GoogleSearchService : IGoogleSearchService
+    public class GoogleSearchService
     {
         private readonly ISeleniumService seleniumService;
         public GoogleSearchService(ISeleniumService seleniumService)

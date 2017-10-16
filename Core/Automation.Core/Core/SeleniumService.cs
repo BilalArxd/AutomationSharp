@@ -3,7 +3,7 @@ using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Remote;
 using System.Collections.Generic;
 
-namespace Automation.Core
+namespace AutomationSharp.Core
 {
 
     public class SeleniumService : ISeleniumService

@@ -1,16 +1,15 @@
-﻿using Automation.Core;
-using Automation.Core.IOC;
-using Automation.Services.Interfaces;
+﻿using AutomationSharp.Core;
+using AutomationSharp.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Automation.NetConsole
+namespace AutomationSharp.NetConsole
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Startup.Start();
-            var service = DependencyContainer.Provider.GetService<IGoogleSearchService>();
+            var container = new Container();
+            var service = container.GetService<GoogleSearchService>();
             service.Search("BilalArxd");
         }
     }

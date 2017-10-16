@@ -1,41 +1,34 @@
-﻿using Automation.Core.Models;
-using Automation.Services.Interfaces;
-using Automation.Services.Services;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Remote;
 using System;
 using System.IO;
 
-namespace Automation.Core.IOC
+namespace AutomationSharp.Core
 {
-    public static class DependencyContainer
+    public class Container : IServiceProvider
     {
-        public static IServiceProvider Provider { get; set; }
-        public static IConfigurationRoot Configuration { get; set; }
-        public static void Initialize()
+        private IServiceProvider Provider { get; set; }
+        private IConfigurationRoot Configuration { get; set; }
+
+        public Container()
         {
-            try
-            {
-                var directory = Directory.GetCurrentDirectory();
-                var builder = new ConfigurationBuilder()
-                  .SetBasePath(directory)
-                  .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-                IConfigurationRoot configuration = builder.Build();
-                IServiceCollection services = new ServiceCollection();
-                RegisterServices(services, configuration);
-                IServiceProvider provider = services.BuildServiceProvider();
-                Configuration = configuration;
-                Provider = provider;
-            }
-            catch (Exception ex)
-            {
-                var x = ex.Message;
-            }
+            var directory = Directory.GetCurrentDirectory();
+            var builder = new ConfigurationBuilder()
+              .SetBasePath(directory)
+              .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+            IConfigurationRoot configuration = builder.Build();
+            IServiceCollection services = new ServiceCollection();
+            RegisterServices(services, configuration);
+            services.AddServiceModule();
+            IServiceProvider provider = services.BuildServiceProvider();
+            Configuration = configuration;
+            Provider = provider;            
         }
-        public static void RegisterServices(IServiceCollection services, IConfigurationRoot configuration)
-        {            
+       
+        private void RegisterServices(IServiceCollection services, IConfigurationRoot configuration)
+        {
             services.Configure<AutomationSettings>(configuration.GetSection("AutomationSettings"));
             string path = System.AppContext.BaseDirectory + "";
             string driver = configuration["AutomationSettings:Driver"];
@@ -85,11 +78,12 @@ namespace Automation.Core.IOC
                 default:
                     break;
             }
-
-
             services.AddSingleton<ISeleniumService, SeleniumService>();
-            services.AddSingleton<IGoogleSearchService, GoogleSearchService>();
         }
 
+        public object GetService(Type serviceType)
+        {
+            return Provider.GetService(serviceType);
+        }
     }
 }

@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Automation.Core.IOC
+namespace AutomationSharp.Core
 {
+    public class AutomationSettings
+    {
+        public string Driver { get; set; }
+    }
 }
